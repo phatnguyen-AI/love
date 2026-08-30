@@ -20,6 +20,16 @@ npm run build
 
 Chỉnh duy nhất file `src/content.ts` để thay tên, các chương lời nhắn, lời tỏ tình cuối và URL nhạc nền.
 
+### Bật thiệp hồi âm
+
+Trang dùng Formspree để chuyển lời hồi âm về email mà không cần máy chủ riêng:
+
+1. Tạo một form tại [Formspree](https://formspree.io/) và xác minh email nhận.
+2. Sao chép form ID (phần cuối của endpoint dạng `https://formspree.io/f/{form-id}`).
+3. Điền ID đó vào `loveContent.reply.formId` trong `src/content.ts`.
+
+Khi `formId` còn trống, nút hồi âm sẽ được ẩn để người xem không gặp biểu mẫu chưa hoạt động. Địa chỉ email nhận chỉ được lưu trong Formspree, không đặt trong mã nguồn công khai.
+
 Nhạc được cấu hình là **Từ ngày em đến** từ file `music.mp3`. Vite tự đóng gói file này với đường dẫn phù hợp cho GitHub Pages. Nếu file nhạc lỗi hoặc trình duyệt chặn phát, lá thư vẫn hoạt động mà không cần âm thanh.
 
 ## GitHub Pages

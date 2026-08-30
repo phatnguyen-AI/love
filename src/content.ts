@@ -8,6 +8,14 @@ export type LoveChapter = {
   emphasis?: string
 }
 
+export type LoveReplyContent = {
+  formId: string
+  ctaLabel: string
+  title: string
+  prompt: string
+  successMessage: string
+}
+
 export type LovePageContent = {
   senderName: string
   recipientName: string
@@ -18,12 +26,13 @@ export type LovePageContent = {
   signature: string
   musicUrl?: string
   musicLabel?: string
+  reply?: LoveReplyContent
 }
 
 /** Đây là file duy nhất cần chỉnh để cá nhân hóa lá thư. */
 export const loveContent: LovePageContent = {
   senderName: 'Phát',
-  recipientName: 'Em',
+  recipientName: 'Vân Anh',
   intro: 'Có những điều anh đã cất thật lâu trong lòng, những điều mỗi lần nghĩ đến đều mang theo hình bóng của em. Hôm nay, anh muốn gom tất cả sự chân thành của mình vào lá thư nhỏ này và gửi đến em.',
   chapters: [
     {
@@ -67,4 +76,13 @@ export const loveContent: LovePageContent = {
   signature: 'Thương em bằng tất cả sự chân thành, Phát',
   musicUrl: tuNgayEmDenUrl,
   musicLabel: 'Từ ngày em đến',
+  // Tạo form tại https://formspree.io, sau đó điền form ID để bật thiệp hồi âm.
+  // Ví dụ: formId: 'xpwzgkqr'. Không cần lưu địa chỉ email trong mã nguồn.
+  reply: {
+    formId: 'xnpqnwyb',
+    ctaLabel: 'Gửi anh đôi lời',
+    title: 'Đến lượt em nhắn anh',
+    prompt: 'Nếu em muốn, hãy để lại vài dòng ở đây. Từng lời em viết đều sẽ được gửi riêng đến anh.',
+    successMessage: 'Lời nhắn đã được gửi rồi. Cảm ơn em vì đã hồi âm cho anh ♡',
+  },
 }

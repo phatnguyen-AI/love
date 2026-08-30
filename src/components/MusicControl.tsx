@@ -6,16 +6,13 @@ type MusicControlProps = {
   onToggle: () => void
 }
 
-function SoundIcon({ muted }: { muted: boolean }) {
+function SoundIcon({ playing }: { playing: boolean }) {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M5 9v6h4l5 4V5L9 9H5Z" />
-      {muted ? (
-        <path d="m18 9 4 4m0-4-4 4" />
-      ) : (
-        <path d="M17 9.5a4 4 0 0 1 0 5M19.5 7a7 7 0 0 1 0 10" />
-      )}
-    </svg>
+    <div className="music-icon-equalizer" aria-hidden="true">
+      <span className={`music-bar music-bar--1 ${playing ? 'music-bar--playing' : ''}`} />
+      <span className={`music-bar music-bar--2 ${playing ? 'music-bar--playing' : ''}`} />
+      <span className={`music-bar music-bar--3 ${playing ? 'music-bar--playing' : ''}`} />
+    </div>
   )
 }
 
@@ -38,11 +35,12 @@ export function MusicControl({ status, label, onToggle }: MusicControlProps) {
         aria-label={accessibleLabel}
         title={label ? `${accessibleLabel}: ${label}` : accessibleLabel}
       >
-        <SoundIcon muted={!playing} />
-        <span>{unavailable ? 'không có nhạc' : playing ? 'đang phát' : 'đã tắt'}</span>
+        <SoundIcon playing={playing} />
+        <span className="music-control__text">
+          {unavailable ? 'không có nhạc' : playing ? (label || 'đang phát') : 'đã tắt'}
+        </span>
         {playing && <i className="music-control__pulse" aria-hidden="true" />}
       </button>
     </div>
   )
 }
-
